@@ -13,6 +13,7 @@ const spots = [
 
 const allImages = spots.flatMap(s => s.images.map(img => ({ src: img, name: s.name })));
 
+// eslint-disable-next-line no-unused-vars
 const schedule = [
   { time: "10:00〜", label: "アーリー更衣室利用受付開始", icon: "⭐", note: "アーリー利用は+500円" },
   { time: "11:00〜", label: "通常更衣室受付開始", icon: "👘", note: "" },
