@@ -207,7 +207,6 @@ export default function App() {
                 <div>引き続きご支援よろしくお願いいたします。</div>
               </div>
             </div>
-
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
               <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>2026.05.02</div>
               <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>📷 公式カメラマン決定のお知らせ</div>
@@ -363,8 +362,10 @@ export default function App() {
                 <div>流鉄流山線 <strong>流山駅</strong> が最寄り駅です。</div>
                 <div>一日フリー乗車券（500円）がお得で便利です。</div>
               </div>
-              <a href="https://maps.app.goo.gl/6sCXrVYfWGUotvLh7" target="_blank" rel="noreferrer" style={{ display: "inline-block", background: "#111", color: "#fff", borderRadius: 6, padding: "8px 16px", fontSize: 12, fontWeight: 600, textDecoration: "none", marginRight: 8, marginBottom: 8 }}>🗺 駅からのルートを見る</a>
-              <a href="https://www.google.com/maps/d/edit?mid=1w5oyodlavOqjWNFjJj6C3ZmEKcGUyrI&usp=sharing" target="_blank" rel="noreferrer" style={{ display: "inline-block", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 6, padding: "8px 16px", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>🗺 イベントエリアマップ</a>
+              <div style={{ display: "flex", gap: 8 }}>
+                <a href="https://maps.app.goo.gl/6sCXrVYfWGUotvLh7" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "#fff", borderRadius: 6, padding: "10px 8px", fontSize: 12, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>🗺 駅からのルートを見る</a>
+                <a href="https://www.google.com/maps/d/edit?mid=1w5oyodlavOqjWNFjJj6C3ZmEKcGUyrI&usp=sharing" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 6, padding: "10px 8px", fontSize: 12, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>🗺 イベントエリアマップ</a>
+              </div>
             </div>
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
               <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>🚗 車でのアクセス</div>
