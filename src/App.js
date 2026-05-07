@@ -326,8 +326,31 @@ export default function App() {
         )}
 
         {activeTab === "ルール" && (
-          <div style={{ textAlign: "center", padding: "60px 0" }}>
-            <div style={{ fontSize: 18, letterSpacing: 3, color: "#aaa", fontWeight: 600 }}>Coming Soon</div>
+          <div>
+            <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 12, letterSpacing: 1 }}>📋 参加ルール・マナー</div>
+            {[
+              { title: "📋 受付・身分証明書について", items: ["**受付時に身分証明書の確認**を行っています。あらかじめご了承ください", "参加中はリストバンドと身分証明書を必ず携帯してください", "スタッフからお声がけがあった際には、すぐにご提示ください"], warning: true },
+              { title: "🎭 イベントコンセプト・マナー", items: ["当イベントは「コスプレを楽しむ」をコンセプトに、初心者から上級者まで安心して参加できる場を目指しています", "SNS上での誹謗中傷・他者のクオリティに関する否定的な発言は固くお断りします"], warning: false },
+              { title: "🎥 公式撮影について", items: ["公式カメラマンによる動画撮影を予定しています", "撮影をご希望されない場合はスタッフまでお声がけください"], warning: false },
+              { title: "🦁 大型コスプレ・キグルミ・ドールについて", items: ["更衣後に簡単な視界チェックを行います（アテンドがいる場合を除く）", "安全面で危険と判断した場合は**参加をお断りする場合があります**", "マスク・ヘッドは1分以内に脱着できる仕様であることをご確認ください"], warning: true },
+              { title: "👘 仮装・羽織ものについて", items: ["仮装（羽織もの・帽子など）であっても、事務局の判断によりコスプレと認定する場合があります", "その際はコスプレ参加チケットのご購入をお願いします", "当日はスタッフよりお声がけする場合がありますのでご了承ください"], warning: false },
+              { title: "⚔️ 長物・衣装小物について", items: ["1m以上の衣装小物を持って移動する際は**必ず袋やケースに入れてください**", "撮影可能スポットであっても、安全面を考慮しお控えいただく場合があります"], warning: true },
+              { title: "📸 撮影マナー", items: ["撮影前に必ず相手の同意を得てください", "一般市民・観光客への配慮を忘れずに", "私有地・立入禁止区域には入らないこと", "エリア内に墓地があります。撮影の際は映り込まないようご配慮ください", "寺社仏閣では本堂・社殿の中央や賽銭箱前など正面からの撮影はご遠慮ください", "居住区での撮影の際は、表札が映り込まないようご注意ください"], warning: false },
+              { title: "🚫 禁止行為", items: ["更衣室以外での着替えやメイク", "屋内でのスプレー類の使用", "コスプレをしたままの来退場", "現行の国家機関衣装の着用", "下着に間違われやすい衣装", "会場内でのウィッグカット", "実際に音を出す行為", "スピーカー等による過度な音出し", "着ぐるみ・大型衣装での1人移動（アテンド同行必須、アテンド1人につき2体まで）", "他の方に怪我をさせる危険のある物や、周囲を汚す・破損させる恐れのある物の持ち込み", "公式喫煙所以外での喫煙は固くお断りします", "各施設・店舗の無料駐車場のご利用はお断りします（イベント参加者専用の駐車場はございません）"], warning: true },
+              { title: "📱 SNS投稿について", items: ["公式ハッシュタグ：#流山本町 #レイヤーズジャック をつけて投稿しよう", "他の参加者を映した写真は同意を得てから投稿", "イベント公式の動画撮影にご協力ください"], warning: false },
+              { title: "⚠️ 全般的な注意", items: ["ゴミは必ず持ち帰るか指定の場所へ", "スタッフの指示に従ってください", "体調不良の場合はスタッフへ申し出てください"], warning: false },
+            ].map(section => (
+              <div key={section.title} style={{ background: "#fff", border: `1px solid ${section.warning ? "#c00" : "#ddd"}`, borderRadius: 10, padding: 16, marginBottom: 12 }}>
+                <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10, color: section.warning ? "#c00" : "#111" }}>{section.title}</div>
+                {section.items.map((item, i) => (
+                  <div key={i} style={{ fontSize: 13, color: section.warning ? "#c00" : "#444", padding: "6px 0", borderBottom: i < section.items.length - 1 ? "1px solid #f0f0f0" : "none", lineHeight: 1.6 }}>
+                    ・{item.split(/\*\*(.*?)\*\*/).map((part, j) =>
+                      j % 2 === 1 ? <strong key={j}>{part}</strong> : part
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
           </div>
         )}
 
