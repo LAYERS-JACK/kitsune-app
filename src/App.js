@@ -238,7 +238,7 @@ export default function App() {
                 ["👥 定員", "100名（予定）"],
                 ["💰 参加費", "3,500円（更衣室利用込み）"],
                 ["📍 エリア", "流山本町周辺"],
-                ["👘 更衣室", "調整中"],
+                ["👘 更衣室", "元・鈴木屋（更衣室ページ参照）"],
                 ["📷 公式カメラマン", "TSUBASA"],
                 ["🎪 主催", "レイヤーズ ジャック実行委員会"],
                 ["🤝 後援", "流山市"],
@@ -314,14 +314,78 @@ export default function App() {
         )}
 
         {activeTab === "更衣室" && (
-          <div style={{ textAlign: "center", padding: "60px 0" }}>
-            <div style={{ fontSize: 18, letterSpacing: 3, color: "#aaa", fontWeight: 600 }}>Coming Soon</div>
+          <div>
+            <div style={{ background: "#111", color: "#fff", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "center" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>👘</div>
+              <div style={{ fontWeight: 700, fontSize: 16 }}>元・鈴木屋</div>
+              <div style={{ fontSize: 12, color: "#aaa", marginTop: 4 }}>公式更衣室</div>
+            </div>
+            {[
+              ["📍 住所", "〒270-0164 千葉県流山市流山１丁目１３６"],
+              ["🕐 通常利用時間", "11:00〜17:00"],
+              ["⭐ アーリー利用", "10:00〜（+500円）"],
+              ["🏁 完全撤収", "18:30"],
+              ["💼 クローク", "利用可能（500円・当日現金払い）※スペース限定"],
+            ].map(([k, v]) => (
+              <div key={k} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: "14px 16px", marginBottom: 8, fontSize: 13 }}>
+                <div style={{ fontWeight: 600, marginBottom: 4 }}>{k}</div>
+                <div style={{ color: "#555" }}>{v}</div>
+              </div>
+            ))}
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: "14px 16px", marginBottom: 8, fontSize: 13 }}>
+              <div style={{ fontWeight: 600, marginBottom: 4 }}>🧳 荷物について</div>
+              <div style={{ color: "#555", lineHeight: 1.8 }}>
+                <div>・段ボールでの衣装持ち込みは不可です</div>
+                <div>・スーツケース・ボストンバッグでの来場を推奨</div>
+                <div>・荷物が多い場合は追加料金が発生します</div>
+              </div>
+            </div>
+            <div style={{ background: "#f0f0f0", borderRadius: 10, padding: 14, fontSize: 12, color: "#666", lineHeight: 1.8, marginBottom: 8 }}>
+              ⚠️ 更衣室は参加者のみ利用可能です。混雑状況によりお待ちいただく場合があります。<br />
+              ・館内ではスタッフの指示に従ってください。<br />
+              ・土足禁止エリアがあります。
+            </div>
+            <a href="https://www.google.com/maps/place/%E3%80%92270-0164+%E5%8D%83%E8%91%89%E7%9C%8C%E6%B5%81%E5%B1%B1%E5%B8%82%E6%B5%81%E5%B1%B1%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%93%EF%BC%96" target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 16px", fontSize: 13, fontWeight: 600, textDecoration: "none", marginBottom: 8 }}>🗺 Google マップで見る</a>
           </div>
         )}
 
         {activeTab === "アクセス" && (
-          <div style={{ textAlign: "center", padding: "60px 0" }}>
-            <div style={{ fontSize: 18, letterSpacing: 3, color: "#aaa", fontWeight: 600 }}>Coming Soon</div>
+          <div>
+            <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>会場へのアクセス</div>
+            <div style={{ background: "#111", color: "#fff", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "center" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>📍</div>
+              <div style={{ fontWeight: 700, fontSize: 16 }}>流山本町エリア</div>
+              <div style={{ fontSize: 12, color: "#aaa", marginTop: 4 }}>千葉県流山市 流山本町周辺</div>
+            </div>
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
+              <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>🚃 電車でのアクセス</div>
+              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8, marginBottom: 12 }}>
+                <div>流鉄流山線 <strong>流山駅</strong> が最寄り駅です。</div>
+                <div>一日フリー乗車券（500円）がお得で便利です。</div>
+              </div>
+              <a href="https://maps.app.goo.gl/6sCXrVYfWGUotvLh7" target="_blank" rel="noreferrer" style={{ display: "inline-block", background: "#111", color: "#fff", borderRadius: 6, padding: "8px 16px", fontSize: 12, fontWeight: 600, textDecoration: "none", marginRight: 8, marginBottom: 8 }}>🗺 駅からのルートを見る</a>
+              <a href="https://www.google.com/maps/d/edit?mid=1w5oyodlavOqjWNFjJj6C3ZmEKcGUyrI&usp=sharing" target="_blank" rel="noreferrer" style={{ display: "inline-block", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 6, padding: "8px 16px", fontSize: 12, fontWeight: 600, textDecoration: "none" }}>🗺 イベントエリアマップ</a>
+            </div>
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
+              <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>🚗 車でのアクセス</div>
+              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
+                <div>会場専用の無料駐車場はありません。</div>
+                <div>近辺の有料コインパーキングをご利用ください。</div>
+              </div>
+            </div>
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
+              <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>🚃 流鉄流山線 コスプレ乗車情報</div>
+              <div style={{ fontSize: 13, color: "#888", textAlign: "center", padding: "16px 0" }}>調整中</div>
+            </div>
+            <div style={{ background: "#fff", border: "1px solid #c00", borderRadius: 10, padding: 16, marginBottom: 8 }}>
+              <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10, color: "#c00" }}>🚫 駐車場について</div>
+              <div style={{ fontSize: 13, color: "#c00", lineHeight: 1.8 }}>
+                各施設・店舗の無料駐車場のご利用はお断りします。イベント参加者専用の駐車場はございません。
+              </div>
+            </div>
+            <div style={{ background: "#f0f0f0", borderRadius: 10, padding: 14, fontSize: 12, color: "#666", lineHeight: 1.8 }}>
+              ⚠️ 会場周辺は混雑が予想されます。できるだけ電車でのご来場をお願いします。
+            </div>
           </div>
         )}
 
