@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 const spots = [
-  { id: 2, name: "浅間神社【メイン会場】", icon: "⛩️", tag: "撮影スポット", note: "撮影可能。トイレもお借りできます。\n・施設の道具や設備は許可なく使用、移動させないでください。\n・建築物に登る、寄りかかる行為はおやめください。\n・当日の状況により、撮影時間を制限させていただく場合があります。", detail: "境内での撮影が可能です。トイレ利用もOK。参拝者への配慮をお願いします。", images: ["/sengen01.jpg", "/sengen02.jpg", "/sengen03.jpg"], map: "https://maps.app.goo.gl/WyXJqtBiWors2EfA6" },
+  { id: 2, name: "浅間神社【メイン会場】", icon: "⛩️", tag: "撮影スポット", note: "撮影可能。トイレもお借りできます。\n・施設の道具や設備は許可なく使用、移動させないでください。\n・建築物に登る、寄りかかる行為はおやめください。\n・当日の状況により、撮影時間を制限させていただく場合があります。", detail: "境内での撮影が可能です。トイレ利用もOK。参拝者への配慮をお願いします。", images: ["/sengen01.jpg", "/sengen03.jpg"], map: "https://maps.app.goo.gl/WyXJqtBiWors2EfA6" },
   { id: 1, name: "近藤勇陣屋跡", icon: "🏯", tag: "撮影スポット", note: "室内撮影も可能になりました。\n・施設の判断により、入場をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・本格的な撮影はご遠慮ください。", detail: "近藤勇ゆかりの歴史的スポット。屋外・室内ともに撮影OK。", images: ["/jinnyaato01.jpg", "/jinyaato02.jpg"], map: "https://maps.app.goo.gl/mA4rqrb5vQbQ4FKVA" },
   { id: 5, name: "万華鏡ミュージアム", icon: "🔮", tag: "撮影スポット", note: "狭いため、建物前のみでの撮影が良いと思います。\n・施設の判断により、入場をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・本格的な撮影はご遠慮ください。\n・買い物目的以外での入店、商品の取り扱いはご遠慮ください。", detail: "建物外観が撮影スポットです。館内は一般見学者への配慮をお願いします。", images: ["/mangekyou01.jpg"], map: "https://maps.app.goo.gl/C1GoXzKYEUd7JiLx9" },
   { id: 6, name: "流山市白みりんミュージアム", icon: "🍶", tag: "撮影スポット", note: "施設内でも撮影可能です。\n・施設の判断により、入場をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・買い物目的以外での、商品の取り扱いはご遠慮ください。", detail: "施設内部での撮影もOK。スタッフの案内に従ってください。", images: ["/mirin01.jpg"], map: "https://maps.app.goo.gl/tAbXgPDHVjfuFDtQ6" },
