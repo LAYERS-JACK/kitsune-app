@@ -15,6 +15,7 @@
     "showPresale": false,
     "backUrl": "https://ljc-app.vercel.app",
     "backLabel": "レイヤーズジャックコンベンション",
+    "showBoothRecruitment": true,
     "eventsList": [
       {
         "title": "流山本町 狐の嫁入り",
