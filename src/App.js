@@ -8,7 +8,7 @@ const spots = [
   { id: 8, name: "流山線歩道橋", icon: "🌉", tag: "撮影スポット", note: "撮影の際は、安全確認をお願いします。\n・一般の方も通行・利用されます。通行の妨げとならないようご注意ください。", detail: "駅が近く、撮影スポットとして使用できます。", images: ["/hodokyou01.jpg", "/hodoukyou02.jpg", "/hodoukyou03.jpg", "/hodoukyou04.jpg", "/hodoukyou05.jpg"], map: "https://maps.app.goo.gl/3sad4NCQfLbutbxs5" },
   { id: 7, name: "江戸川土手", icon: "🌊", tag: "撮影スポット", note: "全域で撮影可能です。\n・一般の方も通行・利用されます。通行の妨げとならないようご注意ください。", detail: "広大な土手エリアを自由に使えます。自然光を活かした撮影に最適。", images: ["/edogawa01.jpg", "/edogawa02.jpg", "/edogawa03.jpg", "/edogawa04.jpg", "/edogawa05.jpg"], map: "https://maps.app.goo.gl/n85F3pgeVYoRADuN6", map2: "https://maps.app.goo.gl/99h5UiiE3TyGNwvv7", map3: "https://maps.app.goo.gl/YqpCRJ7d3aC6hpVs7" },
   { id: 3, name: "流山駅（流鉄流山線）", icon: "🚃", tag: "調整中", note: "Coming Soon", detail: "Coming Soon", images: ["/nagareyamaeki.jpg"], map: "https://maps.app.goo.gl/4XHTUziQm3Ewwzrx5" },
-  { id: 4, name: "CHAT ERRANT", icon: "🍽️", tag: "協賛店", note: "ランチ営業・撮影スポット\n・店舗の判断により、入店をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・本格的な撮影はご遠慮ください。", detail: "流山本町エリアにある創作フレンチレストランです。当日はランチ営業を行っており、店内は撮影スポットとしてもご利用いただけます。", images: ["/chaterrant01.jpg"], map: "https://maps.app.goo.gl/XPWSuMm8fijJqLkt6" },
+  { id: 4, name: "CHAT ERRANT", icon: "🍽️", tag: "協賛店", note: "ランチ営業・撮影スポット\n・店舗の判断により、入店をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・本格的な撮影はご遠慮ください。", detail: "流山本町エリアにある創作フレンチレストランです。当日はランチ営業を行っており、参加者限定のスペシャルランチをご用意しています。店内は撮影スポットとしてもご利用いただけます。", images: ["/chaterrant01.jpg"], map: "https://maps.app.goo.gl/XPWSuMm8fijJqLkt6" },
 ];
 
 const allImages = spots.flatMap(s => s.images.map(img => ({ src: img, name: s.name })));
