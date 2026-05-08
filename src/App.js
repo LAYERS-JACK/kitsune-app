@@ -471,7 +471,7 @@ export default function App({ event }) {
                   {staff.roles.map((item, i) => (
                     <div key={i} style={{ padding: "8px 0", borderBottom: i < staff.roles.length - 1 ? "1px solid #f0f0f0" : "none" }}>
                       <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 2 }}>
-                        {item.role}　{i === 0 ? `×${item.count}名` : `×${item.count}名（交代あり）`}
+                        {item.role}　{i === 0 || i === 1 ? `×${item.count}名` : `×${item.count}名（交代あり）`}
                       </div>
                       {item.person && <div style={{ fontSize: 12, color: "#888" }}>担当：{item.person}</div>}
                     </div>
@@ -506,10 +506,17 @@ export default function App({ event }) {
 
                 <div style={{ fontWeight: 700, fontSize: 13, letterSpacing: 1, margin: "16px 0 8px", padding: "6px 12px", background: "#111", color: "#fff", borderRadius: 6 }}>📞 緊急連絡</div>
                 {staff.emergency.map((item, i) => (
-                  <div key={i} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: "12px 16px", marginBottom: 8, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <span style={{ fontSize: 13, color: "#888" }}>{item.label}</span>
-                    <span style={{ fontSize: 14, fontWeight: 700 }}>{item.value}</span>
-                  </div>
+                  item.tel ? (
+                    <a key={i} href={`tel:${item.tel}`} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: "12px 16px", marginBottom: 8, textDecoration: "none" }}>
+                      <span style={{ fontSize: 13, color: "#888" }}>{item.label}</span>
+                      <span style={{ fontSize: 14, fontWeight: 700, color: "#111" }}>📞 {item.value}</span>
+                    </a>
+                  ) : (
+                    <div key={i} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: "12px 16px", marginBottom: 8, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: 13, color: "#888" }}>{item.label}</span>
+                      <span style={{ fontSize: 14, fontWeight: 700 }}>{item.value}</span>
+                    </div>
+                  )
                 ))}
               </div>
             )}
