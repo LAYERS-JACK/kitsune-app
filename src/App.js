@@ -59,7 +59,7 @@ function TopSlideshow({ spots }) {
   );
 }
 
-const tabs = ["TOP", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ", "スタッフ"];
+const tabs = ["TOP", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ"];
 
 export default function App({ event }) {
   const { meta, details, photographer, notices, spots, dressingRoom, access, rules, faqs, staff } = event;
@@ -517,6 +517,12 @@ export default function App({ event }) {
         )}
 
       </div>
+
+      {/* フッター */}
+      <div style={{ textAlign: "center", padding: "24px 16px 40px" }}>
+        <span onClick={() => handleTab("スタッフ")} style={{ fontSize: 11, color: "#ccc", cursor: "pointer", letterSpacing: 1 }}>staff</span>
+      </div>
+
     </div>
   );
 }
