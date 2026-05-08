@@ -13,6 +13,8 @@
     "ticketUrl": null,
     "showSlideshow": false,
     "showPresale": false,
+    "backUrl": "https://ljc-app.vercel.app",
+    "backLabel": "レイヤーズジャックコンベンション",
     "eventsList": [
       {
         "title": "流山本町 狐の嫁入り",
@@ -20,6 +22,14 @@
         "area": "流山本町エリア",
         "status": "open",
         "current": true
+      },
+      {
+        "title": "LAYERS JACK CONVENTION",
+        "date": "2026年6月28日（日）",
+        "area": "流山本町エリア",
+        "url": "https://ljc-app.vercel.app",
+        "status": "open",
+        "current": false
       },
       {
         "title": "👹 百鬼夜行イベント",
