@@ -177,6 +177,8 @@ export default function App() {
               ))}
             </div>
 
+            <a href="https://livepocket.jp/e/ip399" target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 15, fontWeight: 700, textDecoration: "none", marginBottom: 16, letterSpacing: 1 }}>🎟 参加申し込みはこちら</a>
+
             <TopSlideshow />
 
             <div style={{ background: "#f0f0f0", borderRadius: 10, padding: 14, fontSize: 12, color: "#666", lineHeight: 1.8, marginBottom: 12, textAlign: "center" }}>
@@ -221,6 +223,15 @@ export default function App() {
         {activeTab === "お知らせ" && (
           <div>
             <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>最新のお知らせ</div>
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
+              <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>2026.05.08</div>
+              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>🎟 チケット販売再開のお知らせ</div>
+              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
+                <div>大変お待たせしました。チケット販売を再開しました！</div>
+                <div>皆さまのご参加をお待ちしております。</div>
+              </div>
+            </div>
+
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
               <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>2026.05.07</div>
               <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>🏛 流山市後援決定のお知らせ</div>
@@ -288,6 +299,7 @@ export default function App() {
               流山市の歴史ある街並みを舞台にしたコスプレイベントです。<br />
               近藤勇ゆかりの地や流鉄流山線など、唯一無二のロケーションで、交流・撮影をお楽しみください。
             </div>
+            <a href="https://livepocket.jp/e/ip399" target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 15, fontWeight: 700, textDecoration: "none", marginTop: 12 }}>🎟 参加申し込みはこちら</a>
           </div>
         )}
 
