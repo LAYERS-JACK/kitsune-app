@@ -453,6 +453,28 @@ export default function App({ event }) {
                   <button onClick={() => { setStaffUnlocked(false); setPasswordInput(""); }} style={{ background: "#333", color: "#aaa", border: "none", borderRadius: 6, padding: "6px 12px", fontSize: 11, cursor: "pointer" }}>🔒 ロック</button>
                 </div>
 
+                <div style={{ fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 8, padding: "6px 12px", background: "#111", color: "#fff", borderRadius: 6 }}>📋 当日プログラム</div>
+                <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 16 }}>
+                  {[
+                    { phase: "オープニング前", time: "09:30〜10:00", items: ["集合・朝礼・設営・役割確認"] },
+                    { phase: "午前の部", time: "10:00〜12:00", items: ["受付対応・流鉄乗車サポート"] },
+                    { phase: "オープニング", time: "12:00〜12:30", items: ["浅間神社に集合・集合写真撮影"] },
+                    { phase: "午後の部", time: "12:30〜16:00", items: ["受付対応・巡回・交代休憩"] },
+                    { phase: "クロージング", time: "16:30〜17:00", items: ["浅間神社に集合・集合写真撮影"] },
+                    { phase: "撤収", time: "17:00〜18:30", items: ["後片付け・更衣室撤収"] },
+                  ].map((item, i, arr) => (
+                    <div key={i} style={{ padding: "10px 0", borderBottom: i < arr.length - 1 ? "1px solid #f0f0f0" : "none" }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
+                        <span style={{ fontSize: 13, fontWeight: 700 }}>📍 {item.phase}</span>
+                        <span style={{ fontSize: 11, color: "#888" }}>{item.time}</span>
+                      </div>
+                      {item.items.map((t, j) => (
+                        <div key={j} style={{ fontSize: 12, color: "#555", paddingLeft: 4 }}>・{t}</div>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+
                 <div style={{ fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 8, padding: "6px 12px", background: "#111", color: "#fff", borderRadius: 6 }}>📅 当日タイムライン</div>
                 <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 16 }}>
                   {staff.timeline.map((item, i) => (
