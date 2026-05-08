@@ -470,8 +470,10 @@ export default function App({ event }) {
                 <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 16 }}>
                   {staff.roles.map((item, i) => (
                     <div key={i} style={{ padding: "8px 0", borderBottom: i < staff.roles.length - 1 ? "1px solid #f0f0f0" : "none" }}>
-                      <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 2 }}>{item.role}</div>
-                      <div style={{ fontSize: 12, color: "#888" }}>{item.person && `担当：${item.person}　`}×{item.count}名</div>
+                      <div style={{ fontSize: 13, fontWeight: 600, marginBottom: 2 }}>
+                        {item.role}　{i === 0 ? `×${item.count}名` : `×${item.count}名（交代あり）`}
+                      </div>
+                      {item.person && <div style={{ fontSize: 12, color: "#888" }}>担当：{item.person}</div>}
                     </div>
                   ))}
                 </div>
