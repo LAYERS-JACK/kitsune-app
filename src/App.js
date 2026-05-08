@@ -1,57 +1,5 @@
 import { useState, useEffect } from "react";
 
-const spots = [
-  { id: 2, name: "浅間神社【メイン会場】", icon: "⛩️", tag: "撮影スポット", note: "撮影可能。トイレもお借りできます。\n・施設の道具や設備は許可なく使用、移動させないでください。\n・建築物に登る、寄りかかる行為はおやめください。\n・当日の状況により、撮影時間を制限させていただく場合があります。", detail: "境内での撮影が可能です。トイレ利用もOK。参拝者への配慮をお願いします。", images: ["/sengen01.jpg", "/sengen03.jpg"], map: "https://maps.app.goo.gl/WyXJqtBiWors2EfA6" },
-  { id: 1, name: "近藤勇陣屋跡", icon: "🏯", tag: "撮影スポット", note: "室内撮影も可能になりました。\n・施設の判断により、入場をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・本格的な撮影はご遠慮ください。", detail: "近藤勇ゆかりの歴史的スポット。屋外・室内ともに撮影OK。", images: ["/jinnyaato01.jpg", "/jinyaato02.jpg"], map: "https://maps.app.goo.gl/mA4rqrb5vQbQ4FKVA" },
-  { id: 5, name: "万華鏡ミュージアム", icon: "🔮", tag: "撮影スポット", note: "狭いため、建物前のみでの撮影が良いと思います。\n・施設の判断により、入場をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・本格的な撮影はご遠慮ください。\n・買い物目的以外での入店、商品の取り扱いはご遠慮ください。", detail: "建物外観が撮影スポットです。館内は一般見学者への配慮をお願いします。", images: ["/mangekyou01.jpg"], map: "https://maps.app.goo.gl/C1GoXzKYEUd7JiLx9" },
-  { id: 6, name: "流山市白みりんミュージアム", icon: "🍶", tag: "撮影スポット", note: "施設内でも撮影可能です。\n・施設の判断により、入場をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・買い物目的以外での、商品の取り扱いはご遠慮ください。", detail: "施設内部での撮影もOK。スタッフの案内に従ってください。", images: ["/mirin01.jpg"], map: "https://maps.app.goo.gl/tAbXgPDHVjfuFDtQ6" },
-  { id: 8, name: "流山線歩道橋", icon: "🌉", tag: "撮影スポット", note: "撮影の際は、安全確認をお願いします。\n・一般の方も通行・利用されます。通行の妨げとならないようご注意ください。", detail: "駅が近く、撮影スポットとして使用できます。", images: ["/hodokyou01.jpg", "/hodoukyou02.jpg", "/hodoukyou03.jpg", "/hodoukyou04.jpg", "/hodoukyou05.jpg"], map: "https://maps.app.goo.gl/3sad4NCQfLbutbxs5" },
-  { id: 7, name: "江戸川土手", icon: "🌊", tag: "撮影スポット", note: "全域で撮影可能です。\n・一般の方も通行・利用されます。通行の妨げとならないようご注意ください。", detail: "広大な土手エリアを自由に使えます。自然光を活かした撮影に最適。", images: ["/edogawa01.jpg", "/edogawa02.jpg", "/edogawa03.jpg", "/edogawa04.jpg", "/edogawa05.jpg"], map: "https://maps.app.goo.gl/n85F3pgeVYoRADuN6", map2: "https://maps.app.goo.gl/99h5UiiE3TyGNwvv7", map3: "https://maps.app.goo.gl/YqpCRJ7d3aC6hpVs7" },
-  { id: 3, name: "流山駅（流鉄流山線）", icon: "🚃", tag: "調整中", note: "Coming Soon", detail: "Coming Soon", images: ["/nagareyamaeki.jpg"], map: "https://maps.app.goo.gl/4XHTUziQm3Ewwzrx5" },
-  { id: 4, name: "CHAT ERRANT", icon: "🍽️", tag: "協賛店", note: "ランチ営業・撮影スポット\n・店舗の判断により、入店をご遠慮いただく場合もございますのであらかじめご了承ください。\n・一般のお客様のご迷惑にならないようにご配慮ください。\n・本格的な撮影はご遠慮ください。", detail: "流山本町エリアにある創作フレンチレストランです。当日はランチ営業を行っており、参加者限定のスペシャルランチをご用意しています。店内は撮影スポットとしてもご利用いただけます。", images: ["/chaterrant01.jpg"], map: "https://maps.app.goo.gl/XPWSuMm8fijJqLkt6" },
-];
-
-const allImages = spots.flatMap(s => s.images.map(img => ({ src: img, name: s.name })));
-
-// eslint-disable-next-line no-unused-vars
-const schedule = [
-  { time: "10:00〜", label: "アーリー更衣室利用受付開始", icon: "⭐", note: "アーリー利用は+500円" },
-  { time: "11:00〜", label: "通常更衣室受付開始", icon: "👘", note: "" },
-  { time: "11:00〜", label: "流鉄流山線コスプレ乗車開始", icon: "🚃", note: "往復440円 / 一日フリー500円" },
-  { time: "12:00〜", label: "オープニングイベント", icon: "🎉", note: "📍 浅間神社" },
-  { time: "12:15〜", label: "集合写真撮影", icon: "📸", note: "📍 浅間神社" },
-  { time: "〜16:00", label: "受付終了・流鉄コスプレ乗車終了", icon: "🔔", note: "" },
-  { time: "16:30〜", label: "クローズイベント", icon: "🎊", note: "📍 浅間神社" },
-  { time: "16:45〜", label: "集合写真撮影", icon: "📸", note: "📍 浅間神社" },
-  { time: "〜18:30", label: "更衣室完全撤収", icon: "🏁", note: "時間厳守でお願いします" },
-];
-
-const faqs = [
-  { category: "参加について", items: [
-    { q: "初めてのコスプレイベントでも参加できますか？", a: "もちろん大歓迎です！スタッフがサポートしますので、お気軽にご参加ください。" },
-    { q: "当日参加はできますか？", a: "定員に余裕がある場合のみ当日参加が可能です。事前予約を推奨しています。" },
-    { q: "友人と一緒に参加できますか？", a: "もちろんです！グループでのご参加も歓迎しています。" },
-  ]},
-  { category: "衣装・更衣について", items: [
-    { q: "更衣室の利用に追加料金はかかりますか？", a: "参加費（3,000円）に含まれていますので追加料金はかかりません。" },
-    { q: "更衣室に鍵付きロッカーはありますか？", a: "鍵付きロッカーのご用意はありませんが、クローク（500円・当日現金払い）をご利用いただけます。貴重品は各自で管理してください。" },
-    { q: "衣装のサイズや種類に制限はありますか？", a: "着ぐるみや大型衣装の場合はアテンドの同行が必要です。また禁止衣装がありますので、ルールページをご確認ください。" },
-  ]},
-  { category: "撮影について", items: [
-    { q: "一般の方への撮影をお願いしてもいいですか？", a: "一般の方への撮影依頼はご遠慮ください。参加者同士での撮影は必ず相手の同意を得てから行ってください。" },
-    { q: "三脚や大型カメラの使用はできますか？", a: "周囲の方の迷惑にならない範囲でご使用いただけます。道路での使用は禁止します。撮影可能場所混雑時はスタッフの指示に従ってください。" },
-  ]},
-  { category: "その他", items: [
-    { q: "雨天の場合はどうなりますか？", a: "小雨の場合は予定通り開催します。荒天の場合は公式SNSにてお知らせします。" },
-    { q: "子どもと一緒に参加できますか？", a: "お子様連れでのご参加も歓迎です。未成年の方は保護者の同伴または同意書が必要です。" },
-  ]},
-  { category: "流鉄について", items: [
-    { q: "流鉄流山線のコスプレ乗車について教えてください。", a: "現在調整中です。詳細が決まり次第お知らせします。" },
-  ]},
-];
-
-const tabs = ["TOP", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ"];
-
 const tagColor = (tag) => {
   if (tag === "協賛店") return "#555";
   if (tag === "撮影・乗車") return "#222";
@@ -89,12 +37,13 @@ function ImageSlider({ images, name }) {
   );
 }
 
-function TopSlideshow() {
+function TopSlideshow({ spots }) {
+  const allImages = spots.flatMap(s => s.images.map(img => ({ src: img, name: s.name })));
   const [idx, setIdx] = useState(0);
   useEffect(() => {
     const timer = setInterval(() => setIdx(i => (i + 1) % allImages.length), 3000);
     return () => clearInterval(timer);
-  }, []);
+  }, [allImages.length]);
   return (
     <div style={{ position: "relative", width: "100%", borderRadius: 12, overflow: "hidden", marginBottom: 16 }}>
       <img src={allImages[idx].src} alt={allImages[idx].name} style={{ width: "100%", height: 240, objectFit: "cover", display: "block" }} />
@@ -110,7 +59,11 @@ function TopSlideshow() {
   );
 }
 
-export default function App() {
+const tabs = ["TOP", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ"];
+
+export default function App({ event }) {
+  const { meta, details, photographer, notices, spots, dressingRoom, access, rules, faqs } = event;
+
   const getInitialTab = () => {
     const hash = decodeURIComponent(window.location.hash.replace("#", ""));
     return tabs.includes(hash) ? hash : "TOP";
@@ -129,11 +82,11 @@ export default function App() {
   return (
     <div style={{ fontFamily: "'Helvetica Neue', sans-serif", background: "#f5f5f5", minHeight: "100vh", maxWidth: 480, margin: "0 auto", color: "#111" }}>
 
+      {/* ヘッダー */}
       <div style={{ background: "#111", color: "#fff", padding: "24px 20px 16px", position: "sticky", top: 0, zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div onClick={() => handleTab("TOP")} style={{ cursor: "pointer" }}>
-          <div style={{ fontSize: 11, letterSpacing: 3, color: "#aaa", marginBottom: 4 }}>COSPLAY EVENT</div>
-          <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: 1 }}>LAYERS JACK</div>
-          <div style={{ fontSize: 13, letterSpacing: 2, color: "#ccc" }}>CONVENTION</div>
+          <div style={{ fontSize: 11, letterSpacing: 3, color: "#aaa", marginBottom: 4 }}>{meta.subtitle}</div>
+          <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: 1 }}>{meta.title}</div>
         </div>
         <button onClick={() => setMenuOpen(!menuOpen)} style={{ background: "none", border: "none", cursor: "pointer", padding: 8, display: "flex", flexDirection: "column", gap: 5 }}>
           <span style={{ display: "block", width: 24, height: 2, background: menuOpen ? "#aaa" : "#fff" }} />
@@ -142,6 +95,7 @@ export default function App() {
         </button>
       </div>
 
+      {/* メニュー */}
       {menuOpen && (
         <div style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", zIndex: 200 }}>
           <div onClick={() => setMenuOpen(false)} style={{ position: "absolute", width: "100%", height: "100%", background: "rgba(0,0,0,0.5)" }} />
@@ -156,18 +110,19 @@ export default function App() {
 
       <div style={{ padding: "20px 16px", paddingBottom: 100 }}>
 
+        {/* TOP */}
         {activeTab === "TOP" && (
           <div>
             <div style={{ background: "#111", color: "#fff", borderRadius: 12, padding: "24px 24px 20px", marginBottom: 16, textAlign: "center" }}>
-              <img src="/20260628logo.jpeg" alt="LAYERS JACK CONVENTION" style={{ width: "100%", borderRadius: 8 }} />
+              <img src={meta.logo} alt={meta.title} style={{ width: "100%", borderRadius: 8 }} />
             </div>
 
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: "16px 20px", marginBottom: 16, display: "flex", flexDirection: "column", gap: 10 }}>
               {[
-                { icon: "📅", label: "開催日", value: "2026年6月28日（日）" },
-                { icon: "🕐", label: "時間", value: "11:00 〜 17:00" },
-                { icon: "📍", label: "場所", value: "流山本町エリア" },
-                { icon: "💰", label: "参加費", value: "3,500円（更衣室込み）" },
+                { icon: "📅", label: "開催日", value: details.date },
+                { icon: "🕐", label: "時間", value: details.time },
+                { icon: "📍", label: "場所", value: details.area },
+                { icon: "💰", label: "参加費", value: details.price },
               ].map(({ icon, label, value }) => (
                 <div key={label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
                   <span style={{ fontSize: 20, width: 28, textAlign: "center", flexShrink: 0 }}>{icon}</span>
@@ -177,41 +132,48 @@ export default function App() {
               ))}
             </div>
 
-            <a href="https://livepocket.jp/e/ip399" target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 15, fontWeight: 700, textDecoration: "none", marginBottom: 16, letterSpacing: 1 }}>🎟 参加申し込みはこちら</a>
+            {meta.ticketUrl && (
+              <a href={meta.ticketUrl} target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 15, fontWeight: 700, textDecoration: "none", marginBottom: 16, letterSpacing: 1 }}>🎟 参加申し込みはこちら</a>
+            )}
 
-            <TopSlideshow />
+            <TopSlideshow spots={spots} />
 
             <div style={{ background: "#f0f0f0", borderRadius: 10, padding: 14, fontSize: 12, color: "#666", lineHeight: 1.8, marginBottom: 12, textAlign: "center" }}>
               📲 このページをホーム画面に追加すると<br />いつでもすぐにアクセスできます！
             </div>
 
-            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "left" }}>
-              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 12, letterSpacing: 1, textAlign: "center" }}>📷 公式カメラマン📷</div>
-              <img src="/tsubasa01.jpeg" alt="TSUBASA" style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
-              <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 8, textAlign: "center" }}>TSUBASA</div>
-              <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
-                <a href="https://x.com/tsubasacamera" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "12px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>𝕏 アカウント</a>
-                <a href="https://www.instagram.com/tsubasacameratokyo/" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 10, padding: "12px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>📷 Instagram</a>
+            {photographer && (
+              <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "left" }}>
+                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 12, letterSpacing: 1, textAlign: "center" }}>📷 公式カメラマン📷</div>
+                <img src={photographer.image} alt={photographer.name} style={{ width: "100%", borderRadius: 8, marginBottom: 12 }} />
+                <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 8, textAlign: "center" }}>{photographer.name}</div>
+                <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+                  <a href={photographer.twitter} target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "12px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>𝕏 アカウント</a>
+                  <a href={photographer.instagram} target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 10, padding: "12px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>📷 Instagram</a>
+                </div>
               </div>
-            </div>
+            )}
 
-            <div style={{ fontSize: 13, color: "#888", letterSpacing: 2, marginBottom: 8, textAlign: "center" }}>― LAYERS JACK CONVENTION ―</div>
+            <div style={{ fontSize: 13, color: "#888", letterSpacing: 2, marginBottom: 8, textAlign: "center" }}>― {meta.title} ―</div>
             <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
-              <a href="https://x.com/LJC_Nagareyama" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>𝕏 公式アカウント</a>
-              <a href="https://www.instagram.com/ljc_nagareyama" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>📷 Instagram</a>
+              <a href={meta.sns.twitter} target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>𝕏 公式アカウント</a>
+              <a href={meta.sns.instagram} target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none" }}>📷 Instagram</a>
             </div>
-            <a href="mailto:layersjack.convention@gmail.com" style={{ display: "block", textAlign: "center", background: "#fff", color: "#111", border: "1px solid #ddd", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none", marginBottom: 12 }}>📧 お問い合わせはこちら</a>
+            <a href={`mailto:${meta.contact}`} style={{ display: "block", textAlign: "center", background: "#fff", color: "#111", border: "1px solid #ddd", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none", marginBottom: 12 }}>📧 お問い合わせはこちら</a>
 
-            <div style={{ textAlign: "center", padding: "16px 0", marginBottom: 12 }}>
-              <div style={{ fontSize: 13, color: "#aaa", letterSpacing: 2, marginBottom: 6 }}>後援</div>
-              <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: 3, color: "#111" }}>流山市</div>
-            </div>
+            {meta.sponsor && (
+              <div style={{ textAlign: "center", padding: "16px 0", marginBottom: 12 }}>
+                <div style={{ fontSize: 13, color: "#aaa", letterSpacing: 2, marginBottom: 6 }}>後援</div>
+                <div style={{ fontSize: 24, fontWeight: 700, letterSpacing: 3, color: "#111" }}>{meta.sponsor}</div>
+              </div>
+            )}
 
             <div style={{ background: "#111", color: "#fff", borderRadius: 10, padding: 16, textAlign: "center" }}>
               <div style={{ fontSize: 12, color: "#aaa", marginBottom: 8, letterSpacing: 1 }}>📣 公式ハッシュタグ</div>
-              <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: 1, marginBottom: 4 }}>#流山本町</div>
-              <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: 1, marginBottom: 12 }}>#レイヤーズジャック</div>
-              <button onClick={() => { navigator.clipboard.writeText("#流山本町 #レイヤーズジャック"); alert("ハッシュタグをコピーしました！"); }} style={{ background: "#333", color: "#fff", border: "none", borderRadius: 6, padding: "8px 20px", fontSize: 12, cursor: "pointer", fontWeight: 600 }}>📋 まとめてコピー</button>
+              {meta.hashtags.map(tag => (
+                <div key={tag} style={{ fontSize: 16, fontWeight: 700, letterSpacing: 1, marginBottom: 4 }}>{tag}</div>
+              ))}
+              <button onClick={() => { navigator.clipboard.writeText(meta.hashtags.join(" ")); alert("ハッシュタグをコピーしました！"); }} style={{ background: "#333", color: "#fff", border: "none", borderRadius: 6, padding: "8px 20px", fontSize: 12, cursor: "pointer", fontWeight: 600, marginTop: 8 }}>📋 まとめてコピー</button>
               <div style={{ marginTop: 12, borderTop: "1px solid #333", paddingTop: 12, fontSize: 12, color: "#aaa", lineHeight: 1.8 }}>
                 <div>SNS投稿時は公式ハッシュタグをつけてシェアしよう！</div>
                 <div>他の参加者を映した写真は必ず同意を得てから投稿しましょう。</div>
@@ -220,60 +182,38 @@ export default function App() {
           </div>
         )}
 
+        {/* お知らせ */}
         {activeTab === "お知らせ" && (
           <div>
             <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>最新のお知らせ</div>
-            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
-              <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>2026.05.08</div>
-              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>🎟 チケット販売再開のお知らせ</div>
-              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
-                <div>大変お待たせしました。チケット販売を再開しました！</div>
-                <div>皆さまのご参加をお待ちしております。</div>
+            {notices.map((n, i) => (
+              <div key={i} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
+                <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>{n.date}</div>
+                <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>{n.title}</div>
+                <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
+                  {n.body.map((line, j) => <div key={j}>{line}</div>)}
+                </div>
               </div>
-            </div>
-
-            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
-              <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>2026.05.07</div>
-              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>🏛 流山市後援決定のお知らせ</div>
-              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
-                <div>流山市より正式に後援をいただくことが決定しました。</div>
-                <div>引き続きご支援よろしくお願いいたします。</div>
-              </div>
-            </div>
-            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
-              <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>2026.05.02</div>
-              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>📷 公式カメラマン決定のお知らせ</div>
-              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
-                <div>公式カメラマンにTSUBASAさんが決定しました！</div>
-                <div>詳細は近日公開予定です。お楽しみに！</div>
-              </div>
-            </div>
-            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
-              <div style={{ fontSize: 11, color: "#aaa", marginBottom: 6 }}>2026.05.01</div>
-              <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 8 }}>🎭 イベント詳細 近日公開予定</div>
-              <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
-                <div>イベントの詳細情報を現在準備中です。</div>
-                <div>近日中に公開予定ですので、今しばらくお待ちください。</div>
-              </div>
-            </div>
+            ))}
           </div>
         )}
 
+        {/* イベント概要 */}
         {activeTab === "イベント概要" && (
           <div>
             <div style={{ marginBottom: 16 }}>
               <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 10, letterSpacing: 1 }}>📌 イベント概要</div>
               {[
-                ["📅 開催日", "2026年6月28日（日）"],
-                ["🕐 開催時間", "11:00〜17:00"],
-                ["👘 更衣室完全撤収", "18:30"],
-                ["👥 定員", "100名（予定）"],
-                ["💰 参加費", "3,500円（更衣室利用込み）"],
-                ["📍 エリア", "流山本町周辺"],
-                ["👘 更衣室", "元・鈴木屋（更衣室ページ参照）"],
-                ["📷 公式カメラマン", "TSUBASA"],
-                ["🎪 主催", "レイヤーズ ジャック実行委員会"],
-                ["🤝 後援", "流山市"],
+                ["📅 開催日", details.date],
+                ["🕐 開催時間", details.time],
+                ["👘 更衣室完全撤収", details.closingTime],
+                ["👥 定員", details.capacity],
+                ["💰 参加費", details.price],
+                ["📍 エリア", details.area],
+                ["👘 更衣室", details.venue],
+                ["📷 公式カメラマン", details.photographer],
+                ["🎪 主催", details.organizer],
+                ["🤝 後援", details.backer],
               ].map(([k, v]) => (
                 <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid #e0e0e0", fontSize: 13 }}>
                   <span style={{ color: "#888" }}>{k}</span>
@@ -283,32 +223,30 @@ export default function App() {
             </div>
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 12 }}>
               <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>💴 料金一覧</div>
-              {[
-                ["参加費（更衣室込み）", "3,500円"],
-                ["アーリー更衣室（10:00〜）", "4,000円"],
-                ["クローク利用（当日現金払い）", "500円"],
-              ].map(([k, v]) => (
-                <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid #f0f0f0", fontSize: 13 }}>
-                  <span style={{ color: "#555" }}>{k}</span>
-                  <span style={{ fontWeight: 700 }}>{v}</span>
+              {details.pricing.map(({ label, price }) => (
+                <div key={label} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid #f0f0f0", fontSize: 13 }}>
+                  <span style={{ color: "#555" }}>{label}</span>
+                  <span style={{ fontWeight: 700 }}>{price}</span>
                 </div>
               ))}
             </div>
-            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, fontSize: 12, color: "#555", lineHeight: 1.8 }}>
-              「コスプレを楽しむ！」がコンセプト。<br />
-              流山市の歴史ある街並みを舞台にしたコスプレイベントです。<br />
-              近藤勇ゆかりの地や流鉄流山線など、唯一無二のロケーションで、交流・撮影をお楽しみください。
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, fontSize: 12, color: "#555", lineHeight: 1.8, marginBottom: 12 }}>
+              {details.description}
             </div>
-            <a href="https://livepocket.jp/e/ip399" target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 15, fontWeight: 700, textDecoration: "none", marginTop: 12 }}>🎟 参加申し込みはこちら</a>
+            {meta.ticketUrl && (
+              <a href={meta.ticketUrl} target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 15, fontWeight: 700, textDecoration: "none", marginTop: 12 }}>🎟 参加申し込みはこちら</a>
+            )}
           </div>
         )}
 
+        {/* スケジュール */}
         {activeTab === "スケジュール" && (
           <div style={{ textAlign: "center", padding: "60px 0" }}>
             <div style={{ fontSize: 18, letterSpacing: 3, color: "#aaa", fontWeight: 600 }}>Coming Soon</div>
           </div>
         )}
 
+        {/* スポット */}
         {activeTab === "スポット" && (
           <div>
             <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>撮影スポット・協賛店一覧</div>
@@ -346,19 +284,20 @@ export default function App() {
           </div>
         )}
 
+        {/* 更衣室 */}
         {activeTab === "更衣室" && (
           <div>
             <div style={{ background: "#111", color: "#fff", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "center" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>👘</div>
-              <div style={{ fontWeight: 700, fontSize: 16 }}>元・鈴木屋</div>
+              <div style={{ fontWeight: 700, fontSize: 16 }}>{dressingRoom.name}</div>
               <div style={{ fontSize: 12, color: "#aaa", marginTop: 4 }}>公式更衣室</div>
             </div>
             {[
-              ["📍 住所", "〒270-0164 千葉県流山市流山１丁目１３６"],
-              ["🕐 通常利用時間", "11:00〜17:00"],
-              ["⭐ アーリー利用", "10:00〜（+500円）"],
-              ["🏁 完全撤収", "18:30"],
-              ["💼 クローク", "利用可能（500円・当日現金払い）※スペース限定"],
+              ["📍 住所", dressingRoom.address],
+              ["🕐 通常利用時間", dressingRoom.hours],
+              ["⭐ アーリー利用", dressingRoom.earlyHours],
+              ["🏁 完全撤収", dressingRoom.closing],
+              ["💼 クローク", dressingRoom.cloakFee],
             ].map(([k, v]) => (
               <div key={k} style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: "14px 16px", marginBottom: 8, fontSize: 13 }}>
                 <div style={{ fontWeight: 600, marginBottom: 4 }}>{k}</div>
@@ -368,9 +307,7 @@ export default function App() {
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: "14px 16px", marginBottom: 8, fontSize: 13 }}>
               <div style={{ fontWeight: 600, marginBottom: 4 }}>🧳 荷物について</div>
               <div style={{ color: "#555", lineHeight: 1.8 }}>
-                <div>・段ボールでの衣装持ち込みは不可です</div>
-                <div>・スーツケース・ボストンバッグでの来場を推奨</div>
-                <div>・荷物が多い場合は追加料金が発生します</div>
+                {dressingRoom.notes.map((n, i) => <div key={i}>・{n}</div>)}
               </div>
             </div>
             <div style={{ background: "#f0f0f0", borderRadius: 10, padding: 14, fontSize: 12, color: "#666", lineHeight: 1.8, marginBottom: 8 }}>
@@ -379,37 +316,30 @@ export default function App() {
               ・土足禁止エリアがあります。
             </div>
             <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: 8 }}>
-              <iframe
-                title="元・鈴木屋 地図"
-                src="https://www.google.com/maps?q=千葉県流山市流山1丁目136&output=embed"
-                width="100%"
-                height="240"
-                style={{ border: 0, display: "block" }}
-                allowFullScreen=""
-                loading="lazy"
-              />
+              <iframe title={`${dressingRoom.name} 地図`} src={dressingRoom.mapEmbed} width="100%" height="240" style={{ border: 0, display: "block" }} allowFullScreen="" loading="lazy" />
             </div>
-            <a href="https://www.google.com/maps/place/%E3%80%92270-0164+%E5%8D%83%E8%91%89%E7%9C%8C%E6%B5%81%E5%B1%B1%E5%B8%82%E6%B5%81%E5%B1%B1%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%93%EF%BC%96" target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 16px", fontSize: 13, fontWeight: 600, textDecoration: "none", marginBottom: 8 }}>🗺 Google マップで見る</a>
+            <a href={dressingRoom.mapUrl} target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 16px", fontSize: 13, fontWeight: 600, textDecoration: "none", marginBottom: 8 }}>🗺 Google マップで見る</a>
           </div>
         )}
 
+        {/* アクセス */}
         {activeTab === "アクセス" && (
           <div>
             <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>会場へのアクセス</div>
             <div style={{ background: "#111", color: "#fff", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "center" }}>
               <div style={{ fontSize: 32, marginBottom: 8 }}>📍</div>
-              <div style={{ fontWeight: 700, fontSize: 16 }}>流山本町エリア</div>
-              <div style={{ fontSize: 12, color: "#aaa", marginTop: 4 }}>千葉県流山市 流山本町周辺</div>
+              <div style={{ fontWeight: 700, fontSize: 16 }}>{access.area}</div>
+              <div style={{ fontSize: 12, color: "#aaa", marginTop: 4 }}>{access.areaDetail}</div>
             </div>
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
               <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>🚃 電車でのアクセス</div>
               <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8, marginBottom: 12 }}>
-                <div>流鉄流山線 <strong>流山駅</strong> が最寄り駅です。</div>
+                <div><strong>{access.station}</strong> が最寄り駅です。</div>
                 <div>一日フリー乗車券（500円）がお得で便利です。</div>
               </div>
               <div style={{ display: "flex", gap: 8 }}>
-                <a href="https://maps.app.goo.gl/6sCXrVYfWGUotvLh7" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "#fff", borderRadius: 6, padding: "10px 8px", fontSize: 12, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>🗺 駅からのルートを見る</a>
-                <a href="https://www.google.com/maps/d/edit?mid=1w5oyodlavOqjWNFjJj6C3ZmEKcGUyrI&usp=sharing" target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 6, padding: "10px 8px", fontSize: 12, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>🗺 イベントエリアマップ</a>
+                <a href={access.routeUrl} target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#111", color: "#fff", borderRadius: 6, padding: "10px 8px", fontSize: 12, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>🗺 駅からのルートを見る</a>
+                <a href={access.mapUrl} target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 6, padding: "10px 8px", fontSize: 12, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>🗺 イベントエリアマップ</a>
               </div>
             </div>
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
@@ -435,32 +365,11 @@ export default function App() {
           </div>
         )}
 
+        {/* ルール */}
         {activeTab === "ルール" && (
           <div>
             <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 16, letterSpacing: 1 }}>📋 参加ルール・マナー</div>
-
-            {[
-              { header: "来場・受付" },
-              { title: "📋 受付・身分証明書について", items: ["**受付時に身分証明書の確認**を行っています。あらかじめご了承ください", "参加中はリストバンドと身分証明書を必ず携帯してください", "スタッフからお声がけがあった際には、すぐにご提示ください"], warning: true },
-
-              { header: "衣装・コスプレ" },
-              { title: "👘 仮装・羽織ものについて", items: ["仮装（羽織もの・帽子など）であっても、事務局の判断によりコスプレと認定する場合があります", "その際はコスプレ参加チケットのご購入をお願いします", "当日はスタッフよりお声がけする場合がありますのでご了承ください"], warning: false },
-              { title: "🦁 大型コスプレ・キグルミ・ドールについて", items: ["更衣後に簡単な視界チェックを行います（アテンドがいる場合を除く）", "安全面で危険と判断した場合は**参加をお断りする場合があります**", "マスク・ヘッドは1分以内に脱着できる仕様であることをご確認ください"], warning: true },
-              { title: "⚔️ 長物・衣装小物について", items: ["1m以上の衣装小物を持って移動する際は**必ず袋やケースに入れてください**", "撮影可能スポットであっても、安全面を考慮しお控えいただく場合があります"], warning: true },
-
-              { header: "撮影・スポット" },
-              { title: "📸 撮影マナー", items: ["撮影前に必ず相手の同意を得てください", "一般市民・観光客への配慮を忘れずに", "私有地・立入禁止区域には入らないこと", "エリア内に墓地があります。撮影の際は映り込まないようご配慮ください", "寺社仏閣では本堂・社殿の中央や賽銭箱前など正面からの撮影はご遠慮ください", "居住区での撮影の際は、表札が映り込まないようご注意ください"], warning: false },
-              { title: "🍽️ 協賛飲食店について", items: ["協賛飲食店での撮影は、ご利用（ご飲食）とあわせてお楽しみください。コスプレを楽しみながら、流山本町の地域活性化にもご協力をお願いいたします。"], warning: false },
-              { title: "🎥 公式撮影について", items: ["公式カメラマンによる動画撮影を予定しています", "撮影をご希望されない場合はスタッフまでお声がけください"], warning: false },
-
-              { header: "禁止事項" },
-              { title: "🚫 禁止行為", items: ["更衣室以外での着替えやメイク", "屋内でのスプレー類の使用", "コスプレをしたままの来退場", "現行の国家機関衣装の着用", "下着に間違われやすい衣装", "会場内でのウィッグカット", "実際に音を出す行為", "スピーカー等による過度な音出し", "着ぐるみ・大型衣装での1人移動（アテンド同行必須、アテンド1人につき2体まで）", "他の方に怪我をさせる危険のある物や、周囲を汚す・破損させる恐れのある物の持ち込み", "公式喫煙所以外での喫煙は固くお断りします", "各施設・店舗の無料駐車場のご利用はお断りします（イベント参加者専用の駐車場はございません）"], warning: true },
-
-              { header: "SNS・その他" },
-              { title: "📱 SNS投稿について", items: ["公式ハッシュタグ：#流山本町 #レイヤーズジャック をつけて投稿しよう", "他の参加者を映した写真は同意を得てから投稿", "イベント公式の動画撮影にご協力ください"], warning: false },
-              { title: "🎭 イベントコンセプト・マナー", items: ["当イベントは「コスプレを楽しむ」をコンセプトに、初心者から上級者まで安心して参加できる場を目指しています", "SNS上での誹謗中傷・他者のクオリティに関する否定的な発言は固くお断りします"], warning: false },
-              { title: "⚠️ 全般的な注意", items: ["ゴミは必ず持ち帰るか指定の場所へ", "スタッフの指示に従ってください", "体調不良の場合はスタッフへ申し出てください"], warning: false },
-            ].map((section, idx) => {
+            {rules.map((section, idx) => {
               if (section.header) {
                 return (
                   <div key={idx} style={{ fontSize: 11, fontWeight: 700, letterSpacing: 2, color: "#888", padding: "4px 4px", marginTop: 20, marginBottom: 8, borderBottom: "1px solid #ddd", textTransform: "uppercase" }}>
@@ -484,6 +393,7 @@ export default function App() {
           </div>
         )}
 
+        {/* FAQ */}
         {activeTab === "FAQ" && (
           <div>
             <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>よくある質問</div>
@@ -498,7 +408,7 @@ export default function App() {
                 ))}
               </div>
             ))}
-            <a href="mailto:layersjack.convention@gmail.com" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none", marginTop: 8, marginBottom: 80 }}>📧 お問い合わせはこちら</a>
+            <a href={`mailto:${meta.contact}`} style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 0", fontSize: 13, fontWeight: 600, textDecoration: "none", marginTop: 8, marginBottom: 80 }}>📧 お問い合わせはこちら</a>
           </div>
         )}
 
