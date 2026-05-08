@@ -382,16 +382,23 @@ export default function App({ event }) {
                 <a href={access.mapUrl} target="_blank" rel="noreferrer" style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", background: "#fff", color: "#111", border: "1px solid #111", borderRadius: 6, padding: "10px 8px", fontSize: 12, fontWeight: 600, textDecoration: "none", textAlign: "center" }}>🗺 イベントエリアマップ</a>
               </div>
             </div>
+            <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: 8 }}>
+              <iframe
+                title="流山本町エリア 地図"
+                src="https://www.google.com/maps?q=千葉県流山市流山1丁目136&output=embed"
+                width="100%"
+                height="240"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen=""
+                loading="lazy"
+              />
+            </div>
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
               <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>🚗 車でのアクセス</div>
               <div style={{ fontSize: 13, color: "#555", lineHeight: 1.8 }}>
                 <div>会場専用の無料駐車場はありません。</div>
                 <div>近辺の有料コインパーキングをご利用ください。</div>
               </div>
-            </div>
-            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 8 }}>
-              <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>🚃 流鉄流山線 コスプレ乗車情報</div>
-              <div style={{ fontSize: 13, color: "#888", textAlign: "center", padding: "16px 0" }}>調整中</div>
             </div>
             <div style={{ background: "#fff", border: "1px solid #c00", borderRadius: 10, padding: 16, marginBottom: 8 }}>
               <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10, color: "#c00" }}>🚫 駐車場について</div>
