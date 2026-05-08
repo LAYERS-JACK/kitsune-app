@@ -111,17 +111,26 @@ function TopSlideshow() {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState("TOP");
+  const getInitialTab = () => {
+    const hash = decodeURIComponent(window.location.hash.replace("#", ""));
+    return tabs.includes(hash) ? hash : "TOP";
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [openSpot, setOpenSpot] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const handleTab = (t) => { setActiveTab(t); setMenuOpen(false); };
+  const handleTab = (t) => {
+    setActiveTab(t);
+    setMenuOpen(false);
+    window.location.hash = encodeURIComponent(t);
+  };
 
   return (
     <div style={{ fontFamily: "'Helvetica Neue', sans-serif", background: "#f5f5f5", minHeight: "100vh", maxWidth: 480, margin: "0 auto", color: "#111" }}>
 
       <div style={{ background: "#111", color: "#fff", padding: "24px 20px 16px", position: "sticky", top: 0, zIndex: 100, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <div onClick={() => setActiveTab("TOP")} style={{ cursor: "pointer" }}>
+        <div onClick={() => handleTab("TOP")} style={{ cursor: "pointer" }}>
           <div style={{ fontSize: 11, letterSpacing: 3, color: "#aaa", marginBottom: 4 }}>COSPLAY EVENT</div>
           <div style={{ fontSize: 20, fontWeight: 700, letterSpacing: 1 }}>LAYERS JACK</div>
           <div style={{ fontSize: 13, letterSpacing: 2, color: "#ccc" }}>CONVENTION</div>
