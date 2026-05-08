@@ -159,7 +159,7 @@ export default function App() {
         {activeTab === "TOP" && (
           <div>
             <div style={{ background: "#111", color: "#fff", borderRadius: 12, padding: "24px 24px 20px", marginBottom: 16, textAlign: "center" }}>
-              <img src="/ljc_vo1.jpeg" alt="LAYERS JACK CONVENTION" style={{ width: "100%", borderRadius: 8 }} />
+              <img src="/20260628logo.jpeg" alt="LAYERS JACK CONVENTION" style={{ width: "100%", borderRadius: 8 }} />
             </div>
 
             <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: "16px 20px", marginBottom: 16, display: "flex", flexDirection: "column", gap: 10 }}>
