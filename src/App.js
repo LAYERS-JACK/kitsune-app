@@ -356,7 +356,7 @@ export default function App({ event }) {
               ・土足禁止エリアがあります。
             </div>
             <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: 8 }}>
-              <iframe title={`${dressingRoom.name} 地図`} src={dressingRoom.mapEmbed} width="100%" height="240" style={{ border: 0, display: "block" }} allowFullScreen="" loading="lazy" />
+              <iframe title={`${dressingRoom.name} 地図`} src={dressingRoom.mapEmbed + "&z=17"} width="100%" height="240" style={{ border: 0, display: "block" }} allowFullScreen="" loading="lazy" />
             </div>
             <a href={dressingRoom.mapUrl} target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 16px", fontSize: 13, fontWeight: 600, textDecoration: "none", marginBottom: 8 }}>🗺 Google マップで見る</a>
           </div>
