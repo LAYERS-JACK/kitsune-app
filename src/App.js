@@ -162,6 +162,21 @@ export default function App() {
               <img src="/ljc_vo1.jpeg" alt="LAYERS JACK CONVENTION" style={{ width: "100%", borderRadius: 8 }} />
             </div>
 
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: "16px 20px", marginBottom: 16, display: "flex", flexDirection: "column", gap: 10 }}>
+              {[
+                { icon: "📅", label: "開催日", value: "2026年6月28日（日）" },
+                { icon: "🕐", label: "時間", value: "11:00 〜 17:00" },
+                { icon: "📍", label: "場所", value: "流山本町エリア" },
+                { icon: "💰", label: "参加費", value: "3,500円（更衣室込み）" },
+              ].map(({ icon, label, value }) => (
+                <div key={label} style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <span style={{ fontSize: 20, width: 28, textAlign: "center", flexShrink: 0 }}>{icon}</span>
+                  <span style={{ fontSize: 12, color: "#888", width: 44, flexShrink: 0 }}>{label}</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: "#111" }}>{value}</span>
+                </div>
+              ))}
+            </div>
+
             <TopSlideshow />
 
             <div style={{ background: "#f0f0f0", borderRadius: 10, padding: 14, fontSize: 12, color: "#666", lineHeight: 1.8, marginBottom: 12, textAlign: "center" }}>
