@@ -10,7 +10,23 @@
       "instagram": "https://www.instagram.com/ljc_nagareyama"
     },
     "sponsor": "流山市",
-    "ticketUrl": "https://livepocket.jp/e/ip399"
+    "ticketUrl": "https://livepocket.jp/e/ip399",
+    "eventsList": [
+      {
+        "title": "LAYERS JACK CONVENTION",
+        "date": "2026年6月28日（日）",
+        "area": "流山本町エリア",
+        "status": "open",
+        "current": true
+      },
+      {
+        "title": "🦊 狐の嫁入り",
+        "date": "2026年7月 開催予定",
+        "area": "詳細近日公開",
+        "status": "coming_soon",
+        "current": false
+      }
+    ]
   },
   "details": {
     "date": "2026年6月28日（日）",

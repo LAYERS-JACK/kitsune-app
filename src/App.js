@@ -59,7 +59,7 @@ function TopSlideshow({ spots }) {
   );
 }
 
-const tabs = ["TOP", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ"];
+const tabs = ["TOP", "イベント一覧", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ"];
 
 export default function App({ event }) {
   const { meta, details, photographer, notices, spots, dressingRoom, access, rules, faqs, staff } = event;
@@ -121,6 +121,34 @@ export default function App({ event }) {
       )}
 
       <div style={{ padding: "20px 16px", paddingBottom: 100 }}>
+
+        {/* イベント一覧 */}
+        {activeTab === "イベント一覧" && (
+          <div>
+            <div style={{ fontSize: 13, color: "#888", marginBottom: 16 }}>公開中・開催予定のイベント</div>
+            {meta.eventsList.map((event, i) => (
+              <div key={i} style={{ background: "#fff", border: `1px solid ${event.current ? "#111" : "#ddd"}`, borderRadius: 12, padding: 20, marginBottom: 12 }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
+                  <div style={{ fontWeight: 700, fontSize: 15 }}>{event.title}</div>
+                  {event.status === "open" && (
+                    <span style={{ background: "#111", color: "#fff", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 20, letterSpacing: 1, flexShrink: 0 }}>公開中</span>
+                  )}
+                  {event.status === "coming_soon" && (
+                    <span style={{ background: "#f0f0f0", color: "#888", fontSize: 10, fontWeight: 700, padding: "3px 10px", borderRadius: 20, letterSpacing: 1, flexShrink: 0 }}>COMING SOON</span>
+                  )}
+                </div>
+                <div style={{ fontSize: 13, color: "#555", marginBottom: 4 }}>📅 {event.date}</div>
+                <div style={{ fontSize: 13, color: "#555", marginBottom: 16 }}>📍 {event.area}</div>
+                {event.current && (
+                  <button onClick={() => handleTab("TOP")} style={{ width: "100%", background: "#111", color: "#fff", border: "none", borderRadius: 8, padding: "12px 0", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>詳細を見る →</button>
+                )}
+                {event.status === "coming_soon" && (
+                  <div style={{ textAlign: "center", fontSize: 12, color: "#aaa", padding: "8px 0" }}>詳細は近日公開予定です</div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* TOP */}
         {activeTab === "TOP" && (
