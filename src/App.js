@@ -672,6 +672,7 @@ export default function App({ event }) {
 
       {/* フッター */}
       <div style={{ textAlign: "center", padding: "24px 16px 40px" }}>
+        <div style={{ fontSize: 11, color: "#aaa", marginBottom: 8 }}>© 2026 Tied in Eventplanning</div>
         <span onClick={() => handleTab("スタッフ")} style={{ fontSize: 11, color: "#ccc", cursor: "pointer", letterSpacing: 1 }}>staff</span>
       </div>
 
