@@ -466,7 +466,23 @@ export default function App({ event }) {
                   ))}
                 </div>
 
-                <div style={{ fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 8, padding: "6px 12px", background: "#111", color: "#fff", borderRadius: 6 }}>👥 役割分担</div>
+                <div style={{ fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 8, padding: "6px 12px", background: "#111", color: "#fff", borderRadius: 6 }}>📷 公式カメラマンスケジュール</div>
+                <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 16 }}>
+                  {[
+                    { time: "10:00〜10:30", label: "準備", note: "" },
+                    { time: "10:30〜12:30", label: "撮影（優先チケット）", note: "" },
+                    { time: "12:30〜13:30", label: "休憩", note: "" },
+                    { time: "13:30〜", label: "撮影（優先チケットの方優先）", note: "終了時間はチケット購入者数によります" },
+                  ].map((item, i, arr) => (
+                    <div key={i} style={{ display: "flex", gap: 12, padding: "8px 0", borderBottom: i < arr.length - 1 ? "1px solid #f0f0f0" : "none" }}>
+                      <span style={{ fontSize: 12, fontWeight: 700, color: "#111", minWidth: 80, flexShrink: 0 }}>{item.time}</span>
+                      <div>
+                        <div style={{ fontSize: 13, fontWeight: 600 }}>{item.label}</div>
+                        {item.note && <div style={{ fontSize: 11, color: "#888", marginTop: 2 }}>{item.note}</div>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
                 <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 16 }}>
                   {staff.roles.map((item, i) => (
                     <div key={i} style={{ padding: "8px 0", borderBottom: i < staff.roles.length - 1 ? "1px solid #f0f0f0" : "none" }}>
@@ -476,6 +492,12 @@ export default function App({ event }) {
                       {item.person && <div style={{ fontSize: 12, color: "#888" }}>担当：{item.person}</div>}
                     </div>
                   ))}
+                </div>
+
+                <div style={{ fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 8, padding: "6px 12px", background: "#111", color: "#fff", borderRadius: 6 }}>🍽️ スタッフランチ</div>
+                <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 10, padding: 16, marginBottom: 16, fontSize: 13, color: "#444", lineHeight: 1.8 }}>
+                  <div>スタッフ・ボランティアのランチは、CHAT ERRANTが提供します。</div>
+                  <div style={{ marginTop: 6, color: "#888" }}>休憩は交代制のため、時間はスタッフによって異なります。</div>
                 </div>
 
                 <div style={{ fontWeight: 700, fontSize: 13, letterSpacing: 1, marginBottom: 8, padding: "6px 12px", background: "#111", color: "#fff", borderRadius: 6 }}>📋 受付オペレーション</div>
