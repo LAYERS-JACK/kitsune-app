@@ -11,6 +11,8 @@
     },
     "sponsor": null,
     "ticketUrl": null,
+    "showSlideshow": false,
+    "showPresale": false,
     "eventsList": [
       {
         "title": "流山本町 狐の嫁入り",
