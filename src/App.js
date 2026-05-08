@@ -59,7 +59,7 @@ function TopSlideshow({ spots }) {
   );
 }
 
-const tabs = ["TOP", "イベント一覧", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ"];
+const tabs = ["TOP", "イベント一覧", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ", "オフ会プラン"];
 
 export default function App({ event }) {
   const { meta, details, photographer, notices, spots, dressingRoom, access, rules, faqs, staff } = event;
@@ -138,12 +138,19 @@ export default function App({ event }) {
                   )}
                 </div>
                 <div style={{ fontSize: 13, color: "#555", marginBottom: 4 }}>📅 {event.date}</div>
-                <div style={{ fontSize: 13, color: "#555", marginBottom: 16 }}>📍 {event.area}</div>
+                <div style={{ fontSize: 13, color: "#555", marginBottom: event.description ? 8 : 16 }}>📍 {event.area}</div>
+                {event.description && <div style={{ fontSize: 13, color: "#111", fontWeight: 600, marginBottom: 16, lineHeight: 1.6 }}>{event.description}</div>}
                 {event.current && (
                   <button onClick={() => handleTab("TOP")} style={{ width: "100%", background: "#111", color: "#fff", border: "none", borderRadius: 8, padding: "12px 0", fontSize: 13, fontWeight: 600, cursor: "pointer" }}>詳細を見る →</button>
                 )}
                 {event.status === "coming_soon" && (
                   <div style={{ textAlign: "center", fontSize: 12, color: "#aaa", padding: "8px 0" }}>詳細は近日公開予定です</div>
+                )}
+                {event.status === "coming_soon" && event.presale && (
+                  <div style={{ background: "#fff", border: "2px solid #111", borderRadius: 10, padding: 12, marginTop: 8 }}>
+                    <div style={{ fontWeight: 700, fontSize: 12, marginBottom: 4 }}>🎟 先行販売情報</div>
+                    <div style={{ fontSize: 12, color: "#444", lineHeight: 1.6 }}>{event.presale}</div>
+                  </div>
                 )}
               </div>
             ))}
@@ -175,6 +182,11 @@ export default function App({ event }) {
             {meta.ticketUrl && (
               <a href={meta.ticketUrl} target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 15, fontWeight: 700, textDecoration: "none", marginBottom: 16, letterSpacing: 1 }}>🎟 参加申し込みはこちら</a>
             )}
+
+            <div style={{ background: "#fff", border: "2px solid #111", borderRadius: 12, padding: 16, marginBottom: 16 }}>
+              <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 8 }}>🎟 先行販売情報</div>
+              <div style={{ fontSize: 13, color: "#444", lineHeight: 1.8 }}>次回イベント「狐の嫁入りイベント」のチケット先行販売を、6月イベントへご来場された方に予定しています！</div>
+            </div>
 
             <TopSlideshow spots={spots} />
 
@@ -437,6 +449,60 @@ export default function App({ event }) {
                 </div>
               );
             })}
+          </div>
+        )}
+
+        {/* オフ会プラン */}
+        {activeTab === "オフ会プラン" && (
+          <div>
+            <div style={{ background: "#111", color: "#fff", borderRadius: 12, padding: 20, marginBottom: 16, textAlign: "center" }}>
+              <div style={{ fontSize: 32, marginBottom: 8 }}>📷</div>
+              <div style={{ fontWeight: 700, fontSize: 16, marginBottom: 4 }}>撮影オフ会プラン</div>
+              <div style={{ fontSize: 12, color: "#aaa" }}>少人数から楽しめる撮影オフ会</div>
+            </div>
+
+            <div style={{ background: "#f0f0f0", borderRadius: 10, padding: 14, fontSize: 12, color: "#666", lineHeight: 1.8, marginBottom: 16 }}>
+              自由な形で開催できます。最低人数10名〜。<br />少人数の場合、料金が変更になります。お問い合わせください。
+            </div>
+
+            {/* ランチプラン */}
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: 20, marginBottom: 12 }}>
+              <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 12 }}>🍽️ レストラン貸切ランチ付き撮影オフ会プラン</div>
+              {[
+                ["🕐 時間", "10:00〜17:00"],
+                ["💰 料金", "5,000円（ランチ付き）"],
+              ].map(([k, v]) => (
+                <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid #f0f0f0", fontSize: 13 }}>
+                  <span style={{ color: "#888" }}>{k}</span>
+                  <span style={{ fontWeight: 700 }}>{v}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* ディナープラン */}
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: 20, marginBottom: 12 }}>
+              <div style={{ fontWeight: 700, fontSize: 15, marginBottom: 12 }}>🍷 レストラン貸切ディナー付き撮影オフ会プラン</div>
+              {[
+                ["🕐 時間", "18:00〜21:00"],
+                ["💰 料金", "7,500円（ディナー付き）"],
+              ].map(([k, v]) => (
+                <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid #f0f0f0", fontSize: 13 }}>
+                  <span style={{ color: "#888" }}>{k}</span>
+                  <span style={{ fontWeight: 700 }}>{v}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* オプション */}
+            <div style={{ background: "#fff", border: "1px solid #ddd", borderRadius: 12, padding: 20, marginBottom: 16 }}>
+              <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 10 }}>✨ オプション（別料金）</div>
+              <div style={{ fontSize: 13, color: "#444", lineHeight: 1.8 }}>
+                <div>・外ロケーション撮影許可</div>
+                <div>・アテンド兼、案内係を付けることができます</div>
+              </div>
+            </div>
+
+            <a href={`mailto:${meta.contact}`} style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "16px 0", fontSize: 14, fontWeight: 700, textDecoration: "none", marginBottom: 8 }}>📧 オフ会プランについて問い合わせる</a>
           </div>
         )}
 
