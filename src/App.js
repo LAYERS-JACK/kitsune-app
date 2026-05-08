@@ -59,7 +59,7 @@ function TopSlideshow({ spots }) {
   );
 }
 
-const tabs = ["TOP", "イベント一覧", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ", "オフ会プラン"];
+const tabs = ["TOP", "お知らせ", "イベント概要", "スケジュール", "スポット", "更衣室", "アクセス", "ルール", "FAQ", "イベント一覧", "オフ会プラン"];
 
 export default function App({ event }) {
   const { meta, details, photographer, notices, spots, dressingRoom, access, rules, faqs, staff } = event;
@@ -114,7 +114,12 @@ export default function App({ event }) {
           <div style={{ position: "absolute", right: 0, top: 0, width: 240, height: "100%", background: "#111", padding: "80px 0 40px" }}>
             <div style={{ fontSize: 11, letterSpacing: 3, color: "#666", padding: "0 24px", marginBottom: 16 }}>MENU</div>
             {tabs.map(t => (
-              <button key={t} onClick={() => handleTab(t)} style={{ display: "block", width: "100%", padding: "16px 24px", background: activeTab === t ? "#222" : "none", border: "none", borderLeft: activeTab === t ? "3px solid #fff" : "3px solid transparent", color: activeTab === t ? "#fff" : "#aaa", fontSize: 15, fontWeight: activeTab === t ? 700 : 400, textAlign: "left", cursor: "pointer", letterSpacing: 1 }}>{t}</button>
+              <div key={t}>
+                {t === "イベント一覧" && (
+                  <div style={{ borderTop: "1px solid #333", margin: "8px 0" }} />
+                )}
+                <button onClick={() => handleTab(t)} style={{ display: "block", width: "100%", padding: "16px 24px", background: activeTab === t ? "#222" : "none", border: "none", borderLeft: activeTab === t ? "3px solid #fff" : "3px solid transparent", color: activeTab === t ? "#fff" : "#aaa", fontSize: 15, fontWeight: activeTab === t ? 700 : 400, textAlign: "left", cursor: "pointer", letterSpacing: 1 }}>{t}</button>
+              </div>
             ))}
           </div>
         </div>
