@@ -385,7 +385,7 @@ export default function App({ event }) {
             <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: 8 }}>
               <iframe
                 title="流山本町エリア 地図"
-                src="https://www.google.com/maps?q=千葉県流山市流山1丁目136&output=embed"
+                src="https://www.google.com/maps?q=千葉県流山市流山1丁目136&output=embed&z=17"
                 width="100%"
                 height="240"
                 style={{ border: 0, display: "block" }}
