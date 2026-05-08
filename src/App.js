@@ -366,6 +366,17 @@ export default function App() {
               ・館内ではスタッフの指示に従ってください。<br />
               ・土足禁止エリアがあります。
             </div>
+            <div style={{ borderRadius: 10, overflow: "hidden", marginBottom: 8 }}>
+              <iframe
+                title="元・鈴木屋 地図"
+                src="https://www.google.com/maps?q=千葉県流山市流山1丁目136&output=embed"
+                width="100%"
+                height="240"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen=""
+                loading="lazy"
+              />
+            </div>
             <a href="https://www.google.com/maps/place/%E3%80%92270-0164+%E5%8D%83%E8%91%89%E7%9C%8C%E6%B5%81%E5%B1%B1%E5%B8%82%E6%B5%81%E5%B1%B1%EF%BC%91%E4%B8%81%E7%9B%AE%EF%BC%91%EF%BC%93%EF%BC%96" target="_blank" rel="noreferrer" style={{ display: "block", textAlign: "center", background: "#111", color: "#fff", borderRadius: 10, padding: "14px 16px", fontSize: 13, fontWeight: 600, textDecoration: "none", marginBottom: 8 }}>🗺 Google マップで見る</a>
           </div>
         )}
